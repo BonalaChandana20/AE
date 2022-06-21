@@ -8,20 +8,53 @@ public class MyPodsPageTest  extends BaseClass{
 
     @Test
     public void TC09_VerifyStatusOfPod(){
-        Mp.MyPods().VerifyNewPods();
+
+        Mp.MyPods().
+                VerifyNewPods();
     }
+
     @Test
     public void TC10_VerifyMessageBeforeNominating(){
-        Mp.MyPods().PodTab().VerifyMessage();
+        Mp.MyPods().
+                PodTab().
+                VerifyMessage();
     }
     @Test
     public void TC11_VerifyStatusAfterNominate(){
-        Mp.NominateTab().NominateButton().AddingHaSher().ConfirmNominationButton().
-                MyPods().ConfirmButton().VerifyStatusAfterNominating();
+        Mp.NominateTab().
+                NominateButton().
+                AddingHaSher().
+                ConfirmNominationButton().
+                MyPods().
+                ConfirmButton().
+                VerifyStatusAfterNominating();
     }
     @Test
     public void TC13_VerifyConfidenceLevel() throws InterruptedException {
-        Mp.NominateTab().NominateButton().Filter().SelectBand().Band();
+        Mp.NominateTab().
+                NominateButton().
+                Filter().
+                ResetButton().
+                Band().
+                ApplyButton().
+                AddingHaSher1().
+                ConfirmNominationButton().
+                MyPods().
+                ConfirmButton().
+                NominateTab().
+                WaitUntilStatusChange().
+                MyPodsNomination().
+                VerifyingTheConsideredStatus().
+                SearchOption().
+                ConfidenceLevel().Comments().CheckBox();
+    }
+    @Test
+    public void TC14_VerifyStatusResponded(){
+        Mp.MyPods().
+                NominateTab().
+                VerifyStatusResponded();
+
+
     }
 
 

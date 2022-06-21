@@ -2,6 +2,9 @@ package Pages;
 
 import Tests.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class MyPodsPage extends BaseClass {
@@ -9,7 +12,7 @@ public class MyPodsPage extends BaseClass {
     //Locators
     By MyPodsTab = By.xpath("//span[contains(text(),'My Pods')]");
     By StatusOfPod = By.xpath("//span[contains(text(),'ALLOCATION READY')]");
-    By podTab = By.xpath("//span[contains(text(),'POD-502')]");
+    By podTab = By.xpath("//span[contains(text(),'POD-515')]");
     By nominateTab = By.xpath("//span[contains(text(),'POD-488')]");
     By MessageBeforeNominate = By.xpath("//div[@class='message-for-allocation-ready']");
     By nominateButton = By.xpath("//*[@class='ant-tag' and contains(text(),'Python')]");
@@ -20,9 +23,16 @@ public class MyPodsPage extends BaseClass {
     By resetButton = By.xpath("//span[contains(text(),'Reset')]");
     By selectBands = By.xpath("(//div[@class='ant-select-selector'])[3]");
     By FilterOption = By.xpath("//span[@class='ant-badge']");
-    By Band = By.xpath("(//div[@class='ant-select-item-option-content'])[3]");
+    By Band = By.xpath("(//p[text()=\"Bands\"])//following::input[@type=\"search\"][1]");
     By applyButton = By.xpath("//span[contains(text(),'Apply')]");
-
+    By addingHaSher1 = By.xpath("(//span[@class='anticon anticon-user-add'])[1]");
+    By myPodsNomination = By.xpath("//Span[@class='nomination-with-count']");
+    By searchButton =  By.xpath("(//input[@type='search'])[2]");
+    By confidenceLevel = By.xpath("//div[@title='High']");
+    By CommentsField = By.xpath("//textarea[@class='ant-input']");
+    By checkBox = By.xpath("//span[@class='anticon anticon-check-circle']");
+    By consideredStatus = By.xpath("//span[contains(text(),'Considered')]");
+    By RespondedStatus = By.xpath("//span[contains(text(),'Responded')]");
 
 
     //Page Actions
@@ -88,12 +98,64 @@ public class MyPodsPage extends BaseClass {
         return this;
     }
     public MyPodsPage Band(){
-        driver.findElement(Band).click();
+        WebElement yourOption = driver.findElement(Band);
+        yourOption.sendKeys(prop.getProperty("Band"));
+        yourOption.sendKeys(Keys.RETURN);
         return this;
     }
-    public void ApplyButton() throws InterruptedException {
-        Thread.sleep(2000);
+    public MyPodsPage ApplyButton() throws InterruptedException {
         driver.findElement(applyButton).click();
+        return this;
+    }
+    public MyPodsPage AddingHaSher1(){
+        driver.findElement(addingHaSher1).click();
+        return this;
+
+    }
+    public MyPodsPage WaitUntilStatusChange() throws InterruptedException {
+        Thread.sleep(3*60*1000);
+        driver.navigate().refresh();
+        Thread.sleep(10000);
+        driver.navigate().refresh();
+        Thread.sleep(10000);
+        return this;
+    }
+    public MyPodsPage MyPodsNomination(){
+        driver.findElement(myPodsNomination).click();
+        return this;
+    }
+    public MyPodsPage SearchOption(){
+        driver.findElement(searchButton).click();
+        return this;
+    }
+    public MyPodsPage ConfidenceLevel(){
+        driver.findElement(confidenceLevel).click();
+        return this;
+    }
+    public MyPodsPage Comments() throws InterruptedException {
+//        JavascriptExecutor jse = (JavascriptExecutor)driver;
+//        jse.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");
+        Thread.sleep(4000);
+        WebElement ele = driver.findElement(CommentsField);
+        ele.sendKeys(prop.getProperty("Comments"));
+        return this;
+    }
+    public MyPodsPage CheckBox(){
+        driver.findElement(checkBox).click();
+        return this;
+    }
+
+    public MyPodsPage VerifyingTheConsideredStatus(){
+        String Status = driver.findElement(consideredStatus).getText();
+        System.out.println("Status After Complete the Nomination is:"+" "+Status);
+        Assert.assertEquals(Status,"CONSIDERED");
+        return this;
+    }
+    public MyPodsPage VerifyStatusResponded(){
+        String Status = driver.findElement(RespondedStatus).getText();
+        System.out.println("Status After giving Confidence Level:"+" "+Status);
+        Assert.assertEquals(Status,"RESPONDED");
+        return this;
     }
 
 }

@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseClass {
    public static WebDriver driver;
    public static  WebDriverWait wait;
+   public static Properties prop;
     @BeforeMethod
     public WebDriver SetUp() throws InterruptedException {
 
@@ -37,7 +38,7 @@ public class BaseClass {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Properties prop = new Properties();
+         prop = new Properties();
 
         //load properties file
         try {
@@ -66,7 +67,7 @@ public class BaseClass {
     @AfterMethod
     public void tearDown() {
         // System.out.println("driver="+driver);
-      //  driver.quit();
+        driver.quit();
     }
 
 
