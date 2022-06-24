@@ -2,12 +2,14 @@ package Pages;
 
 import Tests.BaseClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class MyPodsPage extends BaseClass {
+
+
 
     //Locators
     By MyPodsTab = By.xpath("//span[contains(text(),'My Pods')]");
@@ -37,121 +39,139 @@ public class MyPodsPage extends BaseClass {
 
     //Page Actions
 
-    public MyPodsPage MyPods(){
-        driver.findElement(MyPodsTab).click();
+    public MyPodsPage click_MyPods(){
+        Actions act =  new Actions(driver);
+        act.moveToElement(driver.findElement(MyPodsTab)).click().perform();
+       // driver.findElement(MyPodsTab).click();
         return this;
     }
-    public MyPodsPage VerifyNewPods(){
+    public MyPodsPage verify_NewPods(){
         String Status = driver.findElement(StatusOfPod).getText();
         System.out.println("Status of New Pod Under open pods tab in PO dashboard:"+" "+Status);
         Assert.assertEquals(Status,"ALLOCATION READY");
         return this;
     }
-    public MyPodsPage PodTab(){
-        driver.findElement(podTab).click();
+    public MyPodsPage click_PodTab() throws InterruptedException {
+        do_click(podTab);
         return this;
     }
-    public MyPodsPage VerifyMessage(){
+    public MyPodsPage Verify_Message(){
         String Message = driver.findElement(MessageBeforeNominate).getText();
         System.out.println("message before Starting the Nomination:"+" "+Message);
         Assert.assertEquals(Message,"Waiting for Allocation Owner to start nominating Hashers");
         return this;
     }
-    public MyPodsPage NominateTab(){
-        driver.findElement(nominateTab).click();
+    public MyPodsPage click_NominateTab() throws InterruptedException {
+        do_click(nominateTab);
+       // driver.findElement(nominateTab).click();
         return this;
     }
-    public MyPodsPage NominateButton(){
-        driver.findElement(nominateButton).click();
+    public MyPodsPage click_NominateButton() throws InterruptedException {
+        do_click(nominateButton);
+      //  driver.findElement(nominateButton).click();
         return this;
 
     }
-    public MyPodsPage AddingHaSher(){
-        driver.findElement(addingHaSher).click();
+    public MyPodsPage click_AddingHaSher() throws InterruptedException {
+        do_click(addingHaSher);
+       // driver.findElement(addingHaSher).click();
         return this;
     }
-    public MyPodsPage ConfirmNominationButton(){
-        driver.findElement(confirmNominationButton).click();
+    public MyPodsPage click_ConfirmNominationButton() throws InterruptedException {
+        do_click(confirmNominationButton);
+        //driver.findElement(confirmNominationButton).click();
         return this;
     }
-    public MyPodsPage ConfirmButton(){
-        driver.findElement(confirmButton).click();
+    public MyPodsPage click_ConfirmButton() throws InterruptedException {
+        do_click(confirmButton);
+
+        //driver.findElement(confirmButton).click();
         return this;
     }
-    public MyPodsPage VerifyStatusAfterNominating(){
+    public MyPodsPage Verify_StatusAfterNominating(){
         String Status = driver.findElement(statusOfPodAfterNominate).getText();
         System.out.println("Status of pod After Nominating under OpenPods tab on PO dashBoard :"+" "+Status);
         Assert.assertEquals(Status,"IN PROGRESS");
         return this;
     }
-    public MyPodsPage Filter() throws InterruptedException {
-        Thread.sleep(4000);
-        driver.findElement(FilterOption).click();
+    public MyPodsPage click_OnFilter() throws InterruptedException {
+        // Thread.sleep(4000);
+       // wait.until(ExpectedConditions.visibilityOf(driver.findElement(FilterOption)));
+        js_click(FilterOption);
+       // driver.findElement(FilterOption).click();
         return this;
     }
-    public MyPodsPage ResetButton(){
-        driver.findElement(resetButton).click();
+    public MyPodsPage click_ResetButton() throws InterruptedException {
+        do_click(resetButton);
+       // driver.findElement(resetButton).click();
         return this;
     }
     public MyPodsPage SelectBand(){
         driver.findElement(selectBands).click();
         return this;
     }
-    public MyPodsPage Band(){
+    public MyPodsPage click_Band(){
         WebElement yourOption = driver.findElement(Band);
         yourOption.sendKeys(prop.getProperty("Band"));
         yourOption.sendKeys(Keys.RETURN);
         return this;
     }
-    public MyPodsPage ApplyButton() throws InterruptedException {
-        driver.findElement(applyButton).click();
+    public MyPodsPage click_ApplyButton() throws InterruptedException {
+        do_click(applyButton);
+       // driver.findElement(applyButton).click();
         return this;
     }
-    public MyPodsPage AddingHaSher1(){
-        driver.findElement(addingHaSher1).click();
+    public MyPodsPage click_AddingHaSher1() throws InterruptedException {
+        do_click(addingHaSher1);
+       // driver.findElement(addingHaSher1).click();
         return this;
 
     }
     public MyPodsPage WaitUntilStatusChange() throws InterruptedException {
-        Thread.sleep(3*60*1000);
+      Thread.sleep(3*60*1000);
         driver.navigate().refresh();
         Thread.sleep(10000);
         driver.navigate().refresh();
         Thread.sleep(10000);
         return this;
     }
-    public MyPodsPage MyPodsNomination(){
-        driver.findElement(myPodsNomination).click();
+    public MyPodsPage click_MyPodsNomination() throws InterruptedException {
+        do_click(myPodsNomination);
+       // driver.findElement(myPodsNomination).click();
         return this;
     }
-    public MyPodsPage SearchOption(){
-        driver.findElement(searchButton).click();
+    public MyPodsPage click_SearchOption() throws InterruptedException {
+        do_click(searchButton);
+       // driver.findElement(searchButton).click();
         return this;
     }
-    public MyPodsPage ConfidenceLevel(){
-        driver.findElement(confidenceLevel).click();
+    public MyPodsPage provide_ConfidenceLevel() throws InterruptedException {
+        do_click(confidenceLevel);
+       // driver.findElement(confidenceLevel).click();
         return this;
     }
     public MyPodsPage Comments() throws InterruptedException {
 //        JavascriptExecutor jse = (JavascriptExecutor)driver;
 //        jse.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");
-        Thread.sleep(4000);
+       // Thread.sleep(4000);
+       // wait.until(ExpectedConditions.visibilityOf(driver.findElement(CommentsField)));
         WebElement ele = driver.findElement(CommentsField);
         ele.sendKeys(prop.getProperty("Comments"));
         return this;
     }
-    public MyPodsPage CheckBox(){
-        driver.findElement(checkBox).click();
+    public MyPodsPage click_CheckBox() throws InterruptedException {
+        do_click(checkBox);
+       // driver.findElement(checkBox).click();
         return this;
     }
 
-    public MyPodsPage VerifyingTheConsideredStatus(){
+    public MyPodsPage Verifying_TheConsideredStatus(){
         String Status = driver.findElement(consideredStatus).getText();
         System.out.println("Status After Complete the Nomination is:"+" "+Status);
         Assert.assertEquals(Status,"CONSIDERED");
         return this;
     }
-    public MyPodsPage VerifyStatusResponded(){
+    public MyPodsPage Verify_StatusResponded(){
         String Status = driver.findElement(RespondedStatus).getText();
         System.out.println("Status After giving Confidence Level:"+" "+Status);
         Assert.assertEquals(Status,"RESPONDED");

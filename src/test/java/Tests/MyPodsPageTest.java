@@ -9,50 +9,50 @@ public class MyPodsPageTest  extends BaseClass{
     @Test
     public void TC09_VerifyStatusOfPod(){
 
-        Mp.MyPods().
-                VerifyNewPods();
+        Mp.click_MyPods().
+                verify_NewPods();
     }
 
     @Test
-    public void TC10_VerifyMessageBeforeNominating(){
-        Mp.MyPods().
-                PodTab().
-                VerifyMessage();
+    public void TC10_VerifyMessageBeforeNominating() throws InterruptedException {
+        Mp.click_MyPods().
+                click_PodTab().
+                Verify_Message();
     }
     @Test
-    public void TC11_VerifyStatusAfterNominate(){
-        Mp.NominateTab().
-                NominateButton().
-                AddingHaSher().
-                ConfirmNominationButton().
-                MyPods().
-                ConfirmButton().
-                VerifyStatusAfterNominating();
+    public void TC11_VerifyStatusAfterNominate() throws InterruptedException {
+        Mp.click_NominateTab().
+                click_NominateButton().
+                click_AddingHaSher().
+                click_ConfirmNominationButton().
+                click_MyPods().
+                click_ConfirmButton().
+                Verify_StatusAfterNominating();
     }
     @Test
     public void TC13_VerifyConfidenceLevel() throws InterruptedException {
-        Mp.NominateTab().
-                NominateButton().
-                Filter().
-                ResetButton().
-                Band().
-                ApplyButton().
-                AddingHaSher1().
-                ConfirmNominationButton().
-                MyPods().
-                ConfirmButton().
-                NominateTab().
+        Mp.click_NominateTab().
+                click_NominateButton().
+                click_OnFilter().
+                click_ResetButton().
+                click_Band().
+                click_ApplyButton().
+                click_AddingHaSher1().
+                click_ConfirmNominationButton().
+                click_MyPods().
+                click_ConfirmButton().
+                click_NominateTab().
                 WaitUntilStatusChange().
-                MyPodsNomination().
-                VerifyingTheConsideredStatus().
-                SearchOption().
-                ConfidenceLevel().Comments().CheckBox();
+                click_MyPodsNomination().
+                Verifying_TheConsideredStatus().
+                click_SearchOption().
+                provide_ConfidenceLevel().Comments().click_CheckBox();
     }
     @Test
-    public void TC14_VerifyStatusResponded(){
-        Mp.MyPods().
-                NominateTab().
-                VerifyStatusResponded();
+    public void TC14_VerifyStatusResponded() throws InterruptedException {
+        Mp.click_MyPods().
+                click_NominateTab().
+                Verify_StatusResponded();
 
 
     }

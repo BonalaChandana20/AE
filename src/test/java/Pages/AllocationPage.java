@@ -12,7 +12,7 @@ public  class AllocationPage extends BaseClass {
 
     By StatusOfPod = By.xpath("//span[@data-status='ALLOCATION_READY']");
     By StatusOfPodAfterNominate = By.xpath("//span[contains(text(),'IN PROGRESS')]");
-    By NominateTab = By.xpath("//span[contains(text(),'POD-456')]");
+    By NominateTab = By.xpath("//span[contains(text(),'POD-502')]");
     By NominateButton = By.xpath("//*[@class='ant-tag' and contains(text(),'Java')]");
     By addingHaSher = By.xpath("(//span[@class='anticon anticon-user-add'])[2]");
     By ConfirmNominationButton = By.xpath("//Span[contains(text(),'Confirm Nominations')]");
@@ -27,66 +27,64 @@ public  class AllocationPage extends BaseClass {
 
     //Page Actions
 
-    public String getStatusOfPod() {
+    public String get_StatusOfPod() {
 
         return driver.findElement(StatusOfPod).getText();
     }
-    public AllocationPage verifyStatusOfPod(){
-        String Status= getStatusOfPod();
+    public AllocationPage verify_StatusOfPod(){
+        String Status= get_StatusOfPod();
         System.out.println("Status of pod:"+""+Status);
         Assert.assertEquals(Status,"ALLOCATION READY");
         return this;
 
     }
-    public AllocationPage nominateTab() throws InterruptedException {
-
-        driver.findElement(NominateTab).click();
+    public AllocationPage click_nominateTab()  throws InterruptedException {
+        do_click(NominateTab);
         return this;
     }
-    public AllocationPage nominateButton(){
-
-        driver.findElement(NominateButton).click();
+    public AllocationPage click_nominateButton() throws InterruptedException {
+        do_click(NominateButton);
         return this;
 
     }
-    public AllocationPage  allocationTab(){
-
-        driver.findElement(AllocationTab).click();
+    public AllocationPage click_allocationsTab() throws InterruptedException {
+        do_click(AllocationTab);
         return this;
     }
-    public AllocationPage Confirm(){
-        driver.findElement(ConfirmButton).click();
+    public AllocationPage click_Confirm() throws InterruptedException {
+        do_click(ConfirmButton);
         return this;
     }
 
-    public String getStatusAfterNominate() throws InterruptedException {
+    public String get_StatusAfterNominate() throws InterruptedException {
 
         return driver.findElement(StatusOfPodAfterNominate).getText();
     }
-    public AllocationPage verifyStatusAfterNominate() throws InterruptedException {
+    public AllocationPage verify_StatusAfterNominate() throws InterruptedException {
 
-        String Status = getStatusAfterNominate();
+        String Status = get_StatusAfterNominate();
         System.out.println("Status of pod After Nominate:"+" "+Status);
         Assert.assertEquals(Status,"IN PROGRESS");
         return this;
     }
-    public AllocationPage AddingHaSher() {
+    public AllocationPage click_AddingHaSher() throws InterruptedException {
 
-       driver.findElement(addingHaSher).click();
+        do_click(addingHaSher);
        return this;
 
     }
-    public AllocationPage ConfirmNomination() {
-        driver.findElement(ConfirmNominationButton);
+    public AllocationPage click_ConfirmNomination() throws InterruptedException {
+        do_click(ConfirmNominationButton);
         return this;
     }
-    public AllocationPage Filter() throws InterruptedException {
-        Thread.sleep(4000);
-        driver.findElement(FilterOption).click();
+    public AllocationPage click_Filter() throws InterruptedException {
+
+        js_click(FilterOption);
         return this;
     }
-    public AllocationPage ApplyButton() throws InterruptedException {
+    public AllocationPage click_ApplyButton() throws InterruptedException {
         Thread.sleep(4000);
+        //js_click(applyButton);
         driver.findElement(applyButton).click();
         return this;
 
@@ -100,7 +98,7 @@ public  class AllocationPage extends BaseClass {
 
         return driver.findElement(SkillInWebPage).getText();
     }
-    public AllocationPage VerifyTheFilter()  {
+    public AllocationPage Verify_TheFilter()  {
 
         String SkillInFilter = SkillFilter();
         String SkillInWebPage = SkillWebpage();
@@ -109,13 +107,13 @@ public  class AllocationPage extends BaseClass {
         Assert.assertEquals(SkillInFilter,SkillInWebPage);
         return this;
     }
-    public AllocationPage UpcomingPods(){
-
-        driver.findElement(UpcomingPodsTab).click();
+    public AllocationPage click_UpcomingPods() throws InterruptedException {
+        do_click(UpcomingPodsTab);
+        //driver.findElement(UpcomingPodsTab).click();
         return this;
 
     }
-    public AllocationPage StatusAfterConfigureThePod(){
+    public AllocationPage verify_StatusAfterConfigureThePod(){
 
         String Status = driver.findElement(StatusOfUpcomingPod).getText();
         System.out.println("Status After Configuration :"+" "+Status);

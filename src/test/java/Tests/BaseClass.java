@@ -1,8 +1,12 @@
 package Tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,8 +22,9 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
    public static WebDriver driver;
-   public static  WebDriverWait wait;
    public static Properties prop;
+  public static   WebDriverWait wait;
+
     @BeforeMethod
     public WebDriver SetUp() throws InterruptedException {
 
@@ -58,11 +63,26 @@ public class BaseClass {
         wait = new WebDriverWait(driver, 30);
         return driver;
 
+    }
+    public void do_click(By element) throws InterruptedException {
+        //System.out.println(element);
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        driver.findElement(element).click();
+        Thread.sleep(1000);
+    }
+    public void js_click(By element) throws InterruptedException {
+       // System.out.println(element);
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
 
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                driver.findElement(element));
 
+        new WebDriverWait(driver, 20).
+                until(webDriver -> ((JavascriptExecutor) webDriver).
+                        executeScript("return document.readyState").equals("complete"));
 
-
+        Thread.sleep(1000);
     }
     @AfterMethod
     public void tearDown() {
