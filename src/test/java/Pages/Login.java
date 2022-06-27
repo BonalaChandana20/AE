@@ -1,10 +1,9 @@
 package Pages;
 
-import Tests.BaseClass;
+import Testing.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class Login extends BaseClass {
@@ -21,7 +20,7 @@ public class Login extends BaseClass {
         js_click(deloitte);
 
         wait.until(ExpectedConditions.presenceOfElementLocated(email));
-        driver.findElement(email).sendKeys(prop.getProperty("Email"));
+        driver.findElement(email).sendKeys("saurasahu@deloitte.com");
 
         js_click(next);
 

@@ -1,6 +1,6 @@
 package Pages;
 
-import Tests.BaseClass;
+import Testing.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -45,37 +45,38 @@ public class PodsPlatform extends BaseClass {
     public void create_newpod() throws InterruptedException {
         Thread.sleep(7000);
 
-        click_test_btn();
-        click_edit_btn();
-        set_delivery_leader();
-        set_product_manager();
-        click_update_btn();
-        wait_for_message();
-        go_back();
-        click_new_config();
-        set_config_name();
-        click_config_start_date();
-        set_todays_date();
-        set_role();
-        set_skill();
-        click_save_config();
-        wait_for_message();
-        click_new_pod();
-        set_pod_name();
-        click_onboard_date();
-        set_onboard_start_date();
-        click_billing_date();
-        set_billing_start_date();
-        set_SKU();
-        click_confirm_pod_btn();
-        select_config();
-        click_continue_btn();
-        click_confirm_btn();
-        wait_for_message();
-        click_latest_created_pod();
-        click_move_to_allocation();
-        click_confirm_btn();
-    }
+            click_test_btn();
+            click_edit_btn();
+            set_delivery_leader();
+            set_product_manager();
+            click_update_btn();
+            wait_for_message();
+            go_back();
+            click_new_config();
+            set_config_name();
+            click_config_start_date();
+            set_todays_date();
+            set_role();
+            set_skill();
+            click_save_config();
+            wait_for_message();
+            click_new_pod();
+            set_pod_name();
+            click_onboard_date();
+            set_onboard_start_date();
+            click_billing_date();
+            set_billing_start_date();
+            set_SKU();
+            click_confirm_pod_btn();
+            select_config();
+            click_continue_btn();
+            click_confirm_btn();
+            wait_for_message();
+            click_latest_created_pod();
+            click_move_to_allocation();
+            click_confirm_btn();
+        }
+
     public PodsPlatform click_test_btn() throws InterruptedException {
         //Thread.sleep(10000);
         System.out.println(test_btn);
@@ -146,7 +147,7 @@ public class PodsPlatform extends BaseClass {
     }
     public PodsPlatform set_todays_date() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfElementLocated(date_today));
-        driver.findElement(date_today).click();
+        js_click(date_today);
         return  this;
     }
     public PodsPlatform set_role() throws InterruptedException {
@@ -236,8 +237,8 @@ public class PodsPlatform extends BaseClass {
         return  this;
     }
     public PodsPlatform click_latest_created_pod() throws InterruptedException {
-        Thread.sleep(3000);         // as after 2 success messages it takes some time to display new pod
-        driver.navigate().refresh();
+        Thread.sleep(4000);         // as after 2 success messages it takes some time to display new pod
+        //driver.navigate().refresh();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(all_pods));
         int size = driver.findElements(all_pods).size();
