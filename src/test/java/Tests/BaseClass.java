@@ -28,11 +28,6 @@ public class BaseClass {
     @BeforeMethod
     public WebDriver SetUp() throws InterruptedException {
 
-        By LoginButton = By.xpath("//button[@type='button']");
-        By DeloitteIdButton = By.xpath("(//input[@type='button'])[2]");
-        By MailIdField = By.xpath("//input[@type='email']");
-        By SubmitButton = By.xpath("//input[@type='submit']");
-
 
         System.setProperty("webdriver.chrome.driver", "C://selenium jars and drivers//driver//Chromedriver//chromedriver.exe");
         File file = new File("C://Users//bochandana//IdeaProjects//AE//src//test//Config.properties");
@@ -57,12 +52,6 @@ public class BaseClass {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(prop.getProperty("Url"));
-//        driver.findElement(LoginButton).click();
-//        driver.findElement(DeloitteIdButton).click();
-//        driver.findElement(MailIdField).sendKeys(prop.getProperty("Email"));
-//        driver.findElement(SubmitButton).click();
-
-
         driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 30);
         return driver;

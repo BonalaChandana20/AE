@@ -28,7 +28,7 @@ public  class Allocate extends BaseClass {
 
     //Chandana X-paths
     By SkillInFilter = By.xpath("//*[@class='ant-select-selection-item-content']");
-    By SkillInWebPage = By.xpath("(//*[@class='ant-tag' and contains(text(),'Java')])[2]");
+    By SkillInWebPage = By.xpath("//*[@class='ant-tag']");
     By UpcomingPodsTab = By.xpath("//div[@id='rc-tabs-0-tab-upcomingPods']");
     By StatusOfUpcomingPod = By.xpath("//span[contains(text(),'UPCOMING')]");
     By StatusOfPod = By.xpath("//span[@data-status='ALLOCATION_READY']");

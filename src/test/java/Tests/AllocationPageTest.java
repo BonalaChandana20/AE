@@ -11,7 +11,7 @@ public class AllocationPageTest extends BaseClass {
     PodsPlatform PO = new PodsPlatform();
 
 
-
+     //Verifying the new Pod which contains Allocation Ready Status
     @Test
     public void TC07_VerifyStatusOfPod() throws InterruptedException {
         login.login_to_website();
