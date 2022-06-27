@@ -37,6 +37,8 @@ public class BaseClass {
         System.setProperty("webdriver.chrome.driver", "C://selenium jars and drivers//driver//Chromedriver//chromedriver.exe");
         File file = new File("C://Users//bochandana//IdeaProjects//AE//src//test//Config.properties");
 
+
+
         FileInputStream fileInput = null;
         try {
             fileInput = new FileInputStream(file);
@@ -55,10 +57,12 @@ public class BaseClass {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(prop.getProperty("Url"));
-        driver.findElement(LoginButton).click();
-        driver.findElement(DeloitteIdButton).click();
-        driver.findElement(MailIdField).sendKeys(prop.getProperty("Email"));
-        driver.findElement(SubmitButton).click();
+//        driver.findElement(LoginButton).click();
+//        driver.findElement(DeloitteIdButton).click();
+//        driver.findElement(MailIdField).sendKeys(prop.getProperty("Email"));
+//        driver.findElement(SubmitButton).click();
+
+
         driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 30);
         return driver;
@@ -84,10 +88,16 @@ public class BaseClass {
 
         Thread.sleep(1000);
     }
+    public void go_to_allocation_engine() throws InterruptedException {
+        driver.get("https://dna-staging.hashedin.com/allocation/allocate");
+    }
+    public void go_to_pods_platform() throws InterruptedException {
+        driver.get("https://dna-staging.hashedin.com/pods/requests/PR-87");
+    }
     @AfterMethod
     public void tearDown() {
         // System.out.println("driver="+driver);
-        driver.quit();
+       // driver.quit();
     }
 
 

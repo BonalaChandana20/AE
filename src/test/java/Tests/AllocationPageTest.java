@@ -1,23 +1,35 @@
 package Tests;
 
-import Pages.AllocationPage;
+import Pages.Allocate;
+import Pages.Login;
+import Pages.PodsPlatform;
 import org.testng.annotations.Test;
 
 public class AllocationPageTest extends BaseClass {
-    AllocationPage Ap = new AllocationPage();
+    Allocate AllocationOwner = new Allocate();
+    Login login = new Login();
+    PodsPlatform PO = new PodsPlatform();
+
+
 
     @Test
-    public void TC07_VerifyStatusOfPod(){
+    public void TC07_VerifyStatusOfPod() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
 
-        Ap.verify_StatusOfPod();
+        AllocationOwner.verify_StatusOfPod();
 
     }
     @Test
     public void TC08_VerifyStatusOfPodAfterNominate() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
 
-        Ap.click_nominateTab().
-                click_nominateButton().
-                click_AddingHaSher().
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_add_hasher().
                 click_ConfirmNomination().
                 click_allocationsTab().
                 click_Confirm().
@@ -26,26 +38,35 @@ public class AllocationPageTest extends BaseClass {
     }
     @Test
     public void TC09_VerifyAddingHaSher() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
 
-        Ap.click_nominateTab().
-                click_nominateButton().
-                click_AddingHaSher().
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_add_hasher().
                 click_ConfirmNomination();
     }
     @Test
     public void TC10_VerifyFilterOption() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
 
-        Ap.click_nominateTab().
-                click_nominateButton().
-                click_Filter().
-                click_ApplyButton().
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_filter().
+                click_apply().
                 Verify_TheFilter();
 
     }
     @Test
     public void TC21_verifyStatusAfterSaveConfiguration() throws InterruptedException{
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
 
-        Ap.click_UpcomingPods().
+        AllocationOwner.click_UpcomingPods().
                 verify_StatusAfterConfigureThePod();
     }
 
