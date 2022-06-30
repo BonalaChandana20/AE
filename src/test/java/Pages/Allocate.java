@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class Allocate extends BaseClass {
+    // test pushsad
 
     // common xpaths
     By nominate_btn = By.xpath("//tr[contains(@class,\"row-level-0 pointer\")][1]");
