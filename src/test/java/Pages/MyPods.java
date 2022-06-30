@@ -29,8 +29,8 @@ public class MyPods extends BaseClass {
     //Chandana X-paths
     By consideredStatus = By.xpath("//span[contains(text(),'Considered')]");
     By RespondedStatus = By.xpath("//span[contains(text(),'Responded')]");
-    By StatusOfPod = By.xpath("//span[contains(text(),'ALLOCATION READY')]");
-    By statusOfPodAfterNominate = By.xpath("//span[contains(text(),'IN PROGRESS')]");
+    By AllocationReadyStatus = By.xpath("//span[contains(text(),'ALLOCATION READY')]");
+    By InProgressStatus = By.xpath("//span[contains(text(),'IN PROGRESS')]");
     By CommentsField = By.xpath("//textarea[@class='ant-input']");
     By choose_confidence =  By.xpath("(//input[@type='search'])[2]");
     By myPodsNomination = By.xpath("//Span[@class='nomination-with-count']");
@@ -167,7 +167,7 @@ public class MyPods extends BaseClass {
 
     // chandana Action Methods
     public MyPods verify_NewPods(){
-        String Status = driver.findElement(StatusOfPod).getText();
+        String Status = driver.findElement(AllocationReadyStatus).getText();
         System.out.println("Status of New Pod Under open pods tab in PO dashboard:"+" "+Status);
         Assert.assertEquals(Status,"ALLOCATION READY");
         return this;
@@ -179,7 +179,7 @@ public class MyPods extends BaseClass {
         return this;
     }
     public MyPods Verify_StatusAfterNominating(){
-        String Status = driver.findElement(statusOfPodAfterNominate).getText();
+        String Status = driver.findElement(InProgressStatus).getText();
         System.out.println("Status of pod After Nominating under OpenPods tab on PO dashBoard :"+" "+Status);
         Assert.assertEquals(Status,"IN PROGRESS");
         return this;

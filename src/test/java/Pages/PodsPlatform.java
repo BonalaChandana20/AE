@@ -137,7 +137,7 @@ public class PodsPlatform extends BaseClass {
 
     public PodsPlatform set_config_name() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfElementLocated(config_name));
-        driver.findElement(config_name).sendKeys("new_pod");
+        driver.findElement(config_name).sendKeys(prop.getProperty("PodName"));
         return  this;
     }
     public PodsPlatform click_config_start_date() throws InterruptedException {
@@ -154,7 +154,7 @@ public class PodsPlatform extends BaseClass {
         wait.until(ExpectedConditions.presenceOfElementLocated(role));
 
         WebElement yourOption = driver.findElement(role);
-        yourOption.sendKeys("react");
+        yourOption.sendKeys(prop.getProperty("Capability"));
         Thread.sleep(2000);
         yourOption.sendKeys(Keys.DOWN);
         yourOption.sendKeys(Keys.RETURN);
@@ -164,7 +164,7 @@ public class PodsPlatform extends BaseClass {
         wait.until(ExpectedConditions.presenceOfElementLocated(skill_set));
 
         WebElement yourOption = driver.findElement(skill_set);
-        yourOption.sendKeys("react");
+        yourOption.sendKeys(prop.getProperty("Track"));
         Thread.sleep(2000);
         yourOption.sendKeys(Keys.DOWN);
         yourOption.sendKeys(Keys.RETURN);
@@ -180,7 +180,7 @@ public class PodsPlatform extends BaseClass {
     }
     public PodsPlatform set_pod_name() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfElementLocated(pod_name));
-        driver.findElement(pod_name).sendKeys("new_pod");
+        driver.findElement(pod_name).sendKeys(prop.getProperty("PodName"));
         return  this;
     }
     public PodsPlatform click_onboard_date() throws InterruptedException {

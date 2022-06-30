@@ -50,9 +50,10 @@ public class ProductOwnerTests extends BaseClass{
     }
     @Test
     public void TC13_VerifyConfidenceLevel() throws InterruptedException {
-        login.login_to_website();
-        PO.create_newpod();
+       // login.login_to_website();
+       // PO.create_newpod();
         login.go_to_allocation_engine();
+        login.login_to_website();
 
         AllocationOwner.click_pod(PO.pod_id)
                 .click_nominate_btn()

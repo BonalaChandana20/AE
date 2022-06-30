@@ -20,7 +20,7 @@ public class Login extends BaseClass {
         js_click(deloitte);
 
         wait.until(ExpectedConditions.presenceOfElementLocated(email));
-        driver.findElement(email).sendKeys("saurasahu@deloitte.com");
+        driver.findElement(email).sendKeys(prop.getProperty("Email"));
 
         js_click(next);
 
