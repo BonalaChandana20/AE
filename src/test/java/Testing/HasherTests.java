@@ -17,7 +17,7 @@ public class HasherTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
 
-        //PO.pod_id="POD-549";
+        // AO nominates a hasher
         AllocationOwner.click_allocationsTab()
                 .click_pod(PO.pod_id)
                 .click_nominate_btn()
@@ -44,7 +44,7 @@ public class HasherTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
 
-        //PO.pod_id="POD-549";
+        // AO nominates a hasher
         AllocationOwner.click_allocationsTab()
                 .click_pod(PO.pod_id)
                 .click_nominate_btn()
@@ -69,7 +69,7 @@ public class HasherTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
 
-        //PO.pod_id="POD-549";
+        // AO nominates a hasher
         AllocationOwner.click_allocationsTab()
                 .click_pod(PO.pod_id)
                 .click_nominate_btn()
@@ -96,7 +96,7 @@ public class HasherTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
 
-       // PO.pod_id="POD-598";
+        // AO nominates a hasher
         AllocationOwner.click_allocationsTab()
                 .click_pod(PO.pod_id)
                 .click_nominate_btn()
