@@ -10,6 +10,7 @@ public class HasherTests extends BaseClass {
     Nominations Hasher = new Nominations();
     PodsPlatform PO = new PodsPlatform();
 
+    //rakesh Tests
     @Test
     public void TC01_VerifyHasherLogin() throws InterruptedException {
         login.login_to_website();
@@ -120,7 +121,7 @@ public class HasherTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
         AllocationOwner
-                .click_pod("POD-561")
+                .click_pod(PO.pod_id)
                 .click_nominate_btn()
                 .click_filter()
                 .click_ResetButton()

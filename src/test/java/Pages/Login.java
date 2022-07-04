@@ -26,7 +26,7 @@ public class Login extends BaseClass {
 
         driver.manage().timeouts().pageLoadTimeout(100, SECONDS);
         loading_error();
-        //Thread.sleep(20000);
+        Thread.sleep(20000);
         return this;
     }
     public Login loading_error() throws InterruptedException {
