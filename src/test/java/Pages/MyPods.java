@@ -195,12 +195,14 @@ public class MyPods extends BaseClass {
         return this;
     }
     public MyPods Verifying_TheConsideredStatus(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(consideredStatus));
         String Status = driver.findElement(consideredStatus).getText();
         System.out.println("Status After Complete the Nomination is:"+" "+Status);
         Assert.assertEquals(Status,"CONSIDERED");
         return this;
     }
     public MyPods Verify_StatusResponded(){
+
         String Status = driver.findElement(RespondedStatus).getText();
         System.out.println("Status After giving Confidence Level:"+" "+Status);
         Assert.assertEquals(Status,"RESPONDED");

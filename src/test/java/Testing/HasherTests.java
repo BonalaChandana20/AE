@@ -45,6 +45,102 @@ public class HasherTests extends BaseClass {
                 verify_dashboard();
 
     }
+    //Chandana Tests
+    @Test
+    public void TC08_verifyConsideredStatus_myNomination() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        //Adding Hasher
+        AllocationOwner
+                .click_pod(PO.pod_id)
+                .click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_Quick_Allocate_Opn()
+                .click_Quick_Allocate_Btn()
+                .click_Yes_Btn()
+                .click_submit_Btn()
+                .wait_for_message();
+
+        // Select the HaSher using Quick Allocate
+        Hasher
+                .click_MyNominationsTab()
+                .refresh();
+        // Verifying The Considered Status
+        ProductOwner
+                .Verifying_TheConsideredStatus();
+
+
+    }
+    @Test
+    public void TC09_VerifyAllocatedStatus() throws InterruptedException {
+        login.login_to_website();
+        //PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        //Adding Hasher
+        AllocationOwner
+                .click_pod("POD-566")
+                .click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_Quick_Allocate_Opn()
+                .click_Quick_Allocate_Btn()
+                .click_Yes_Btn()
+                .click_submit_Btn()
+                .wait_for_message()
+                .go_back()
+                .click_allocation_tab()
+                .accept_pod()
+                .click_confirm_pod();
+        ProductOwner.click_MyPods()
+                .click_pod("POD-566")
+                .accept_pod()
+                .click_confirm_pod();
+        Hasher
+                .click_MyNominationsTab()
+                .refresh()
+                .Verify_allocated_Status();
+
+
+
+
+    }
+    @Test
+    public void Verify_Cancelled_Status() throws InterruptedException {
+        login.login_to_website();
+        //PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner
+                .click_pod("POD-561")
+                .click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_Quick_Allocate_Opn()
+                .click_Quick_Allocate_Btn()
+                .click_Yes_Btn()
+                .click_submit_Btn()
+                .click_add_hasher()
+                .click_Quick_Allocate_Opn1()
+                .click_Quick_Allocate_Btn()
+                .click_Yes_Btn()
+                .click_submit_Btn();
+        Hasher
+                .Verify_cancelled_status();
+
+    }
+
 
     // saurabh Tests
     @Test

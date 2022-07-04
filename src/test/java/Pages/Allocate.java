@@ -47,6 +47,11 @@ public class Allocate extends BaseClass {
     By StatusOfPodAfterNominate = By.xpath("//span[contains(text(),'IN PROGRESS')]");
     By selectBands = By.xpath("(//div[@class='ant-select-selector'])[3]");
     By Band = By.xpath("(//p[text()=\"Bands\"])//following::input[@type=\"search\"][1]");
+    By quick_allocate_Opn = By.xpath("(//span[@data-size='large'])[1]");
+    By quick_allocate_opn1 = By.xpath("(//span[@data-size='large'])[2]");
+    By quick_allocate_Btn = By.xpath("//span[contains(text(),'Quick Allocate')]");
+    By radio_Btn = By.xpath("(//span[@class='ant-radio-inner'])[1]");
+    By submit_Btn = By.xpath("//button[@type='submit']");
 
     public String name="";
 
@@ -71,6 +76,7 @@ public class Allocate extends BaseClass {
         return this;
     }
     public Allocate click_add_hasher() throws InterruptedException {
+        Thread.sleep(2000);
         do_click(add_hasher);      // adds 1st hasher
         return this;
     }
@@ -346,4 +352,25 @@ public class Allocate extends BaseClass {
 //    public Allocate click_() throws InterruptedException {
 //
 //    }
+public Allocate click_Quick_Allocate_Opn() throws InterruptedException {
+    js_click(quick_allocate_Opn);
+    return this;
+}
+    public Allocate click_Quick_Allocate_Opn1() throws InterruptedException {
+        Thread.sleep(2000);
+        js_click(quick_allocate_opn1);
+        return this;
+    }
+    public Allocate click_Quick_Allocate_Btn() throws InterruptedException {
+        js_click(quick_allocate_Btn);
+        return this;
+    }
+    public Allocate click_Yes_Btn() throws InterruptedException {
+        js_click(radio_Btn);
+        return this;
+    }
+    public Allocate click_submit_Btn() throws InterruptedException {
+        do_click(submit_Btn);
+        return this;
+    }
 }

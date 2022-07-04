@@ -26,6 +26,10 @@ public class Nominations extends BaseClass {
 //Rakesh xpaths
     By NominatedStatus = By.xpath("//span[contains(text(),'Nominated')]");
 
+    // Chandana Xpaths
+    By allocated_Status = By.xpath("//span[contains(text(),'Allocated')]");
+    By cancelled_status = By.xpath("//span[contains(text(),'Cancelled')]");
+
 
     public Nominations verify_dashboard() throws InterruptedException {
 
@@ -114,4 +118,25 @@ public class Nominations extends BaseClass {
 //
 //        return  this;
 //    }
+    //Chandana PageAction Methods
+
+    public Nominations Verify_allocated_Status() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(allocated_Status));
+        String Status = driver.findElement(allocated_Status).getText();
+        System.out.println("Status After Confirming The Pod:"+" "+Status);
+        Assert.assertEquals(Status,"ALLOCATED");
+        return this;
+    }
+    public Nominations Verify_cancelled_status(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(cancelled_status));
+        String Status = driver.findElement(cancelled_status).getText();
+        System.out.println("Status After override The Hasher:"+" "+Status);
+        Assert.assertEquals(Status,"CANCELLED");
+        return this;
+
+    }
+    public Nominations refresh(){
+        driver.navigate().refresh();
+        return this;
+    }
 }
