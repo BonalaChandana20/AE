@@ -10,6 +10,42 @@ public class HasherTests extends BaseClass {
     Nominations Hasher = new Nominations();
     PodsPlatform PO = new PodsPlatform();
 
+    @Test
+    public void TC01_VerifyHasherLogin() throws InterruptedException {
+        login.login_to_website();
+        login.go_to_allocation_engine();
+    }
+
+    @Test
+    public void TC03_VerifyStatusAfterNomination () throws InterruptedException {
+        //PO.pod_id = "POD-557";
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner.click_allocationsTab()
+                .click_pod(PO.pod_id)
+                .click_nominate_btn()
+                .reset_filter()
+                .search_hasher(prop.getProperty("Email"))
+                .nominate_hasher(prop.getProperty("Email"))
+                .close_search()
+                .click_ConfirmNomination()
+                .wait_for_message()
+                .go_back();
+        Hasher.click_MyNominationsTab().
+                Verify_StatusAfterNominating();
+
+    }
+
+    @Test
+    public void TC02_VerifyDashboard () throws InterruptedException {
+        login.login_to_website();
+        login.go_to_allocation_engine();
+        Hasher.click_MyNominationsTab().
+                verify_dashboard();
+
+    }
+
     // saurabh Tests
     @Test
     public void TC11_Verify_click_on_opt_out_button() throws InterruptedException {

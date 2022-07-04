@@ -23,6 +23,25 @@ public class Nominations extends BaseClass {
     By optOutConfirm_btn= By.xpath("//span[text()='Confirm']");
     By status= By.xpath("//span[contains(@class,\"status\")]");
 //    By = By.xpath("");
+//Rakesh xpaths
+    By NominatedStatus = By.xpath("//span[contains(text(),'Nominated')]");
+
+
+    public Nominations verify_dashboard() throws InterruptedException {
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(MyNominationsTab));
+        String actual = driver.findElement(MyNominationsTab).getText();
+        System.out.println("actual = "+actual);
+        Assert.assertEquals(actual, "My Nominations");
+        return this;
+
+    }
+    public Nominations Verify_StatusAfterNominating(){
+        String Status = driver.findElement(NominatedStatus).getText();
+        System.out.println("Status of pod After Nominating under OpenPods tab on PO dashBoard :"+" "+Status);
+        Assert.assertEquals(Status,"NOMINATED");
+        return this;
+    }
 
     public Nominations click_MyNominationsTab() throws InterruptedException {
         do_click(MyNominationsTab);
