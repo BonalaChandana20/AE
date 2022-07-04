@@ -85,7 +85,7 @@ public class HasherTests extends BaseClass {
 
         //Adding Hasher
         AllocationOwner
-                .click_pod("POD-566")
+                .click_pod(PO.pod_id)
                 .click_nominate_btn()
                 .click_filter()
                 .click_ResetButton()
@@ -102,7 +102,7 @@ public class HasherTests extends BaseClass {
                 .accept_pod()
                 .click_confirm_pod();
         ProductOwner.click_MyPods()
-                .click_pod("POD-566")
+                .click_pod(PO.pod_id)
                 .accept_pod()
                 .click_confirm_pod();
         Hasher
@@ -117,7 +117,7 @@ public class HasherTests extends BaseClass {
     @Test
     public void Verify_Cancelled_Status() throws InterruptedException {
         login.login_to_website();
-        //PO.create_newpod();
+        PO.create_newpod();
         login.go_to_allocation_engine();
         AllocationOwner
                 .click_pod("POD-561")
