@@ -81,7 +81,7 @@ public class HasherTests extends BaseClass {
     @Test
     public void TC09_VerifyAllocatedStatus() throws InterruptedException {
         login.login_to_website();
-        //PO.create_newpod();
+        PO.create_newpod();
         login.go_to_allocation_engine();
 
         //Adding Hasher
