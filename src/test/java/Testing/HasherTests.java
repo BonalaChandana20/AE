@@ -115,6 +115,63 @@ public class HasherTests extends BaseClass {
 
 
     }
+
+    //Pooja tests
+    @Test
+    public void TC04_VerifyStatusOfPod() throws InterruptedException {
+
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_add_hasher().
+                click_ConfirmNomination();
+        Hasher.click_MyNominationsTab().
+                click_Nominatedbtn().
+                click_ConfirmNominatedbtnclickable();
+    }
+
+    @Test
+    public void TC_05_VerifyDisableofConfirmationbtn() throws InterruptedException {
+
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_add_hasher().
+                click_ConfirmNomination();
+        Hasher.click_MyNominationsTab().
+                click_Nominatedbtn().
+                click_Confirm_Nomination_btn().
+                click_yes_confirm_btn().
+                ConfirmNominationdisablecheck().
+                Optoutdisablecheck().
+                ResponseTimecheck();
+    }
+
+    @Test
+    public void TC_06_VerifyStatusafterConfirmation() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn().
+                click_add_hasher().
+                click_ConfirmNomination();
+        Hasher.click_MyNominationsTab().
+                click_Nominatedbtn().
+                click_Confirm_Nomination_btn().
+                click_yes_confirm_btn().
+                click_navigate().
+                Statuscheck();
+
+    }
+
     @Test
     public void Verify_Cancelled_Status() throws InterruptedException {
         login.login_to_website();

@@ -3,7 +3,9 @@ package Pages;
 import Testing.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.Locale;
@@ -30,6 +32,10 @@ public class Nominations extends BaseClass {
     By allocated_Status = By.xpath("//span[contains(text(),'Allocated')]");
     By cancelled_status = By.xpath("//span[contains(text(),'Cancelled')]");
 
+ //pooja xpaths
+    By navigate = By.xpath("//span[@class='anticon anticon-arrow-left']");
+
+    By Considered_Status = By.xpath("//span[contains(text(),'Considered')]");
 
     public Nominations verify_dashboard() throws InterruptedException {
 
@@ -139,4 +145,59 @@ public class Nominations extends BaseClass {
         driver.navigate().refresh();
         return this;
     }
+
+    public Nominations click_Nominatedbtn() throws InterruptedException {
+        do_click(NominatedStatus);
+        return this;
+    }
+
+    public Nominations click_navigate() throws InterruptedException {
+        do_click(navigate);
+        return this;
+    }
+
+    public Nominations Statuscheck() throws InterruptedException {
+        String Considered_Status = driver.findElement(By.xpath("//span[contains(text(),'Considered')]")).getText();
+        Assert.assertTrue(Considered_Status.contains("CONSIDERED"));
+        return this;
+    }
+
+    public Nominations ConfirmNominationdisablecheck() throws InterruptedException {
+        WebElement ele = driver.findElement(By.xpath("//span[text()='Confirm Nomination']"));
+        if (ele.isEnabled()){
+            System.out.println("Confirmation button is enabled");
+        }
+        else {
+            System.out.println("Confirmation button is disabled");
+        }
+        return this;
+    }
+
+    public Nominations Optoutdisablecheck() throws InterruptedException {
+        WebElement optout = driver.findElement(By.xpath("//span[text()='Opt Out']"));
+        if (optout.isEnabled()) {
+            System.out.println("Optout button is enabled");
+        }
+        else {
+            System.out.println("Optout button is disabled");
+        }
+        return this;
+    }
+
+    public Nominations ResponseTimecheck() throws InterruptedException {
+        WebElement Responsetime = driver.findElement(By.xpath("//div[@class='time-rem']"));
+        if (Responsetime.isDisplayed()){
+            System.out.println("Response Time displaying");
+        }
+        else {
+            System.out.println("Response time not displaying");
+        }
+        return this;
+    }
+
+    public Nominations click_ConfirmNominatedbtnclickable() throws InterruptedException {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(Confirm_Nomination_btn));
+        return this;
+    }
+
 }
