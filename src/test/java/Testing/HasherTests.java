@@ -46,6 +46,80 @@ public class HasherTests extends BaseClass {
                 verify_dashboard();
 
     }
+
+
+    //Pooja tests
+    @Test
+    public void TC04_Verify_Hasher_AbleTo_confirmNomination() throws InterruptedException {
+
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_ConfirmNomination();
+        Hasher.click_MyNominationsTab()
+                .click_yes_confirm_btn()
+                .click_Nominated_btn()
+                .Confirm_Nomination_disable_check();
+
+    }
+
+    @Test
+    public void TC_05_Verify_DisableofConfirmationbtn() throws InterruptedException {
+
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_ConfirmNomination();
+        Hasher.click_MyNominationsTab().
+                click_yes_confirm_btn().
+                click_Nominated_btn().
+                click_Confirm_Nomination_btn().
+                click_confirm().
+                OptOut_disable_check().
+                Confirm_Nomination_disable_check().
+                Response_Time_check();
+
+    }
+
+    @Test
+    public void TC_06_Verify_StatusafterConfirmation() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+
+        AllocationOwner.click_pod(PO.pod_id).
+                click_nominate_btn()
+                .click_filter()
+                .click_ResetButton()
+                .click_apply()
+                .search_hasher(prop.getProperty("HasherName"))
+                .click_add_hasher()
+                .click_ConfirmNomination();
+        Hasher.click_MyNominationsTab().
+                click_yes_confirm_btn().
+                click_Nominated_btn().
+                click_Confirm_Nomination_btn().
+                click_confirm().
+                click_MyNominationsTab().
+                Status_check();
+
+    }
     //Chandana Tests
     @Test
     public void TC08_verifyConsideredStatus_myNomination() throws InterruptedException {
@@ -113,62 +187,6 @@ public class HasherTests extends BaseClass {
 
 
 
-
-    }
-
-    //Pooja tests
-    @Test
-    public void TC04_VerifyStatusOfPod() throws InterruptedException {
-
-        login.login_to_website();
-        PO.create_newpod();
-        login.go_to_allocation_engine();
-
-        AllocationOwner.click_pod(PO.pod_id).
-                click_nominate_btn().
-                click_add_hasher().
-                click_ConfirmNomination();
-        Hasher.click_MyNominationsTab().
-                click_Nominatedbtn().
-                click_ConfirmNominatedbtnclickable();
-    }
-
-    @Test
-    public void TC_05_VerifyDisableofConfirmationbtn() throws InterruptedException {
-
-        login.login_to_website();
-        PO.create_newpod();
-        login.go_to_allocation_engine();
-
-        AllocationOwner.click_pod(PO.pod_id).
-                click_nominate_btn().
-                click_add_hasher().
-                click_ConfirmNomination();
-        Hasher.click_MyNominationsTab().
-                click_Nominatedbtn().
-                click_Confirm_Nomination_btn().
-                click_yes_confirm_btn().
-                ConfirmNominationdisablecheck().
-                Optoutdisablecheck().
-                ResponseTimecheck();
-    }
-
-    @Test
-    public void TC_06_VerifyStatusafterConfirmation() throws InterruptedException {
-        login.login_to_website();
-        PO.create_newpod();
-        login.go_to_allocation_engine();
-
-        AllocationOwner.click_pod(PO.pod_id).
-                click_nominate_btn().
-                click_add_hasher().
-                click_ConfirmNomination();
-        Hasher.click_MyNominationsTab().
-                click_Nominatedbtn().
-                click_Confirm_Nomination_btn().
-                click_yes_confirm_btn().
-                click_navigate().
-                Statuscheck();
 
     }
 
