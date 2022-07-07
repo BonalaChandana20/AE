@@ -32,13 +32,22 @@ public class MyPods extends BaseClass {
     By AllocationReadyStatus = By.xpath("//span[contains(text(),'ALLOCATION READY')]");
     By InProgressStatus = By.xpath("//span[contains(text(),'IN PROGRESS')]");
     By CommentsField = By.xpath("//textarea[@class='ant-input']");
-    By choose_confidence =  By.xpath("(//input[@type='search'])[2]");
+    By choose_confidence =  By.xpath("(//div[@class='ant-select-selector'])[3]");
     By myPodsNomination = By.xpath("//Span[@class='nomination-with-count']");
     By MessageBeforeNominate = By.xpath("//div[@class='message-for-allocation-ready']");
+
+    //Saji
+    By nomination_with_count_2 = By.xpath("(//article[@class='ant-typography'])[2]");
 
     public int count=0;
 
     // common action methods
+
+
+    public MyPods nominate_second_hasher() throws InterruptedException {
+        do_click(nomination_with_count_2);
+        return this;
+    }
 
     public MyPods click_MyPods(){
         wait.until(ExpectedConditions.presenceOfElementLocated(MyPodsTab));
@@ -68,11 +77,12 @@ public class MyPods extends BaseClass {
         return this;
     }
     public MyPods click_choose_confidence() throws InterruptedException {
-        do_click(choose_confidence);
+        Thread.sleep(6000);
+        js_click(choose_confidence);
         return this;
     }
     public MyPods provide_ConfidenceLevel() throws InterruptedException {
-        do_click(confidenceLevel);
+        js_click(confidenceLevel);
         return this;
     }
 
@@ -101,7 +111,7 @@ public class MyPods extends BaseClass {
         return this;
     }
     public MyPods click_confirm_pod() throws InterruptedException {
-        do_click(confirm_pod);
+        js_click(confirm_pod);
         return this;
     }
 
@@ -118,6 +128,7 @@ public class MyPods extends BaseClass {
     public MyPods wait_for_message() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfElementLocated(message));
         wait.until(driver -> ExpectedConditions.invisibilityOfElementLocated(message));
+        System.out.println(message);
 
         return this;
     }

@@ -9,6 +9,162 @@ public class AllocationOwnerTests extends BaseClass {
     MyPods ProductOwner = new MyPods();
     PodsPlatform PO = new PodsPlatform();
 
+    //Saji Tests
+    @Test
+    public void TC01_verifyLogin() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+
+    }
+    @Test
+    public void TC02_verifyTitle() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+        AllocationOwner.get_title();
+    }
+    @Test
+    public void TC03_verifyVisibilityOfTabs() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+        AllocationOwner
+                .visible_open_tab()
+                .visible_closed_tab()
+                .visible_upcoming_tab();
+
+    }
+    @Test
+    public void TC04_togglingTabMethod() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+        AllocationOwner
+             .go_to_mynomination()
+             .click_allocationsTab();
+
+    }
+    @Test
+    public void TC05_verifyMostRecentPod() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner.get_MostRecentPod();
+    }
+    //-------------Confidence Level Issue--------------
+    @Test
+    public void TC16_nominationPageMethods() throws InterruptedException {
+        login.login_to_website();
+        //PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner
+                .click_pod("POD-625")
+                .click_nominate_btn()
+                .click_filter()
+                .reset_filter()
+                .click_apply()
+                .search_hasher(prop.getProperty("Hasher"))
+                .click_add_hasher()
+                .click_ConfirmNomination()
+                .go_back()
+                .click_confirm_pod()
+                .Nominate_Second_Hasher()
+                .click_filter()
+                .reset_filter()
+                .click_apply()
+                .search_hasher(prop.getProperty("Hasher"))
+                .click_add_hasher()
+                .click_ConfirmNomination();
+
+        AllocationOwner
+                .click_allocationsTab()
+                .click_pod("POD-625")
+                .click_allocation_tab()
+                .click_nominate_btn()
+                .select_hasher()
+                .click_close().Nominate_Second_Hasher()
+                .select_hasher();
+        ProductOwner.wait_for_message();
+
+
+
+
+    }
+
+    @Test
+    public void TC17_VerifyAllocatedHasher() throws InterruptedException {
+        login.login_to_website();
+        //PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner
+                .click_pod("POD-621")
+                .click_nominate_btn()
+                .click_filter()
+                .reset_filter()
+                .click_apply()
+                .change_page_size()
+                .nominate_unallocated_hasher()
+                .click_ConfirmNomination();
+        ProductOwner
+                .click_MyPods()
+                .click_confirm_pod()
+                .click_pod("POD-613")
+                .wait_for_consideration()
+                .click_nominations()
+                .click_choose_confidence()
+                .provide_ConfidenceLevel()
+                .select_hasher()
+                .close_feedback();
+        AllocationOwner
+                .click_allocationsTab()
+                .click_pod("POD-613")
+                .click_allocation_tab()
+                .click_nominate_btn()
+                .select_hasher()
+                .click_close()
+                .get_Allocated_Hasher();
+
+
+    }
+
+    @Test(priority = 6)
+    public void TC18_confirmStatusMethods() throws InterruptedException {
+        login.login_to_website();
+        //PO.create_newpod();
+        login.go_to_allocation_engine();
+        AllocationOwner
+                .click_pod("POD-621")
+                .click_nominate_btn()
+                .click_filter()
+                .reset_filter()
+                .click_apply()
+                .change_page_size()
+                .nominate_unallocated_hasher()
+                .click_ConfirmNomination();
+        ProductOwner
+                .click_MyPods()
+                .click_confirm_pod()
+                .click_pod("POD-621")
+                .wait_for_consideration()
+                .click_nominations()
+                .click_choose_confidence()
+                .provide_ConfidenceLevel()
+                .select_hasher()
+                .close_feedback();
+        AllocationOwner
+                .click_allocationsTab()
+                .click_pod("POD-621")
+                .click_allocation_tab()
+                .click_nominate_btn()
+                .select_hasher()
+                .click_close()
+                .accept_pod()
+                .click_confirm_pod()
+                .click_allocationsTab()
+                .get_confirmed_status();
+
+
+
+    }
+    //--------------------------------------------------------------
+
     // chandana Tests
     @Test
     public void TC07_VerifyStatusOfPod() throws InterruptedException {

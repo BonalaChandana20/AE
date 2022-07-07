@@ -53,12 +53,83 @@ public class Allocate extends BaseClass {
     By radio_Btn = By.xpath("(//span[@class='ant-radio-inner'])[1]");
     By submit_Btn = By.xpath("//button[@type='submit']");
 
+    //Saji Xpaths
+    By open_pod_xpath =  By.xpath("//div[@id= 'rc-tabs-0-tab-openPods']");
+    By closed_pod_xpath = By.xpath("//div[@id= 'rc-tabs-0-tab-closedPods']");
+    By upcoming_pod_xpath = By.xpath("//div[@id= 'rc-tabs-0-tab-upcomingPods']");
+    By recent_podinlist_xpath = By.xpath("(//span[@class='pod-name'])[1]");
+    By allocation_tab_xpath = By.xpath("//span[contains(text(),'Allocations')]");
+    By mynomination_tab_xpath = By.xpath("//span[contains(text(),'My Nominations')]");
+    By nominate_btn1 = By.xpath("//tr[contains(@class,\"row-level-0 pointer\")][2]");
+    By Allocated_Hasher = By.xpath("//div[@class='profile']");
+    By confirmed_Status = By.xpath("//span[contains(text(),'CONFIRMED')]");
+
     public String name="";
 
-    // common Action Methods
-    // common Action Methods
+    //saji action methods
+
+    public Allocate get_title(){
+        String title = driver.getTitle();
+        System.out.println("Title of the Page is:"+""+title);
+        Assert.assertEquals(title,"Allocation Engine");
+        return this;
+    }
+    public Allocate visible_open_tab() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(open_pod_xpath));
+        String open_pod =  driver.findElement(open_pod_xpath).getText();
+        Assert.assertTrue(open_pod.contains("Open Pods"));
+        return this;
+    }
+    public Allocate visible_closed_tab() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(closed_pod_xpath));
+        String open_pod =  driver.findElement(closed_pod_xpath).getText();
+        Assert.assertTrue(open_pod.contains("Closed Pods"));
+        return this;
+    }
+    public Allocate visible_upcoming_tab(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(upcoming_pod_xpath));
+        String open_pod =  driver.findElement(upcoming_pod_xpath).getText();
+        Assert.assertTrue(open_pod.contains("Upcoming Pods"));
+        return this;
+
+    }
+    public Allocate go_to_mynomination() throws InterruptedException {
+        do_click(mynomination_tab_xpath);
+        wait.until(ExpectedConditions.presenceOfElementLocated(mynomination_tab_xpath));
+        String myNominationTab = driver.findElement(mynomination_tab_xpath).getText();
+        Assert.assertEquals(myNominationTab,"My Nominations");
+
+        return this;
+    }
+    public Allocate get_MostRecentPod()
+    {
+        String recentPod = driver.findElement(recent_podinlist_xpath).getText();
+        System.out.println(recentPod);
+        return this;
+    }
+    public Allocate Nominate_Second_Hasher() throws InterruptedException {
+        do_click(nominate_btn1);
+        return this;
+    }
+    public Allocate get_Allocated_Hasher() {
+        boolean allocatedHasher = driver.findElement(Allocated_Hasher).isDisplayed();
+        System.out.println(allocatedHasher);
+        return this;
+    }
+    public Allocate get_confirmed_status(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(confirmed_Status));
+        String confirmedStatus = driver.findElement(confirmed_Status).getText();
+        System.out.println("status After Accept The Pod :"+""+confirmedStatus);
+        Assert.assertEquals(confirmedStatus,"CONFIRMED");
+        return this;
+    }
+
+
     public Allocate click_allocationsTab() throws InterruptedException {
         do_click(AllocationTab);
+        String allocationTab = driver.findElement(allocation_tab_xpath).getText();
+        Assert.assertEquals(allocationTab, "Allocations");
+
         return  this;
     }
     public Allocate click_pod(String pod) throws InterruptedException {
