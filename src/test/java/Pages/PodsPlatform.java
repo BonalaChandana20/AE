@@ -116,6 +116,7 @@ public class PodsPlatform extends BaseClass {
         click_latest_created_pod();
         click_move_to_allocation();
         click_confirm_btn();
+        wait_for_message();
     }
     public PodsPlatform set_Pod_Size() throws InterruptedException {
         do_click(pod_Size);
@@ -125,17 +126,14 @@ public class PodsPlatform extends BaseClass {
     public PodsPlatform Set_Count() throws InterruptedException {
         do_click(Count);
         return this;
-
     }
 
     public PodsPlatform click_test_btn() throws InterruptedException {
-        //Thread.sleep(10000);
         System.out.println(test_btn);
         wait.until(ExpectedConditions.presenceOfElementLocated(test_btn));
         wait.until(ExpectedConditions.visibilityOfElementLocated(test_btn));
 
         driver.findElement(test_btn).click();
-        //Thread.sleep(1000);
         return this;
     }
 

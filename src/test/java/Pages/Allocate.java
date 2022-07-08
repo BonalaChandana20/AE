@@ -1,6 +1,8 @@
 package Pages;
 
 import Testing.BaseClass;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -65,7 +67,7 @@ public class Allocate extends BaseClass {
     By confirmed_Status = By.xpath("//span[contains(text(),'CONFIRMED')]");
 
     public String name="";
-
+    public Logger log= LogManager.getLogger(Allocate.class.getName());
     //saji action methods
 
     public Allocate get_title(){
@@ -126,6 +128,7 @@ public class Allocate extends BaseClass {
 
 
     public Allocate click_allocationsTab() throws InterruptedException {
+        log.info("click_allocationsTab");
         do_click(AllocationTab);
         String allocationTab = driver.findElement(allocation_tab_xpath).getText();
         Assert.assertEquals(allocationTab, "Allocations");
@@ -133,6 +136,7 @@ public class Allocate extends BaseClass {
         return  this;
     }
     public Allocate click_pod(String pod) throws InterruptedException {
+        log.info("click_pod");
         new WebDriverWait(driver, 5).
                 until(webDriver -> ((JavascriptExecutor) webDriver).
                         executeScript("return document.readyState").equals("complete"));
@@ -143,23 +147,28 @@ public class Allocate extends BaseClass {
         return  this;
     }
     public Allocate click_nominate_btn() throws InterruptedException {
+        log.info("click_nominate_btn");
         do_click(nominate_btn);
         return this;
     }
     public Allocate click_add_hasher() throws InterruptedException {
+        log.info("click_add_hasher");
         Thread.sleep(2000);
         do_click(add_hasher);      // adds 1st hasher
         return this;
     }
     public Allocate click_filter() throws InterruptedException {
+        log.info("click_filter");
         js_click(filter);
         return this;
     }
     public Allocate click_reset() throws InterruptedException {
+        log.info("click_reset");
         js_click(reset_Btn);
         return this;
     }
     public Allocate click_apply() throws InterruptedException {
+        log.info("click_apply");
         js_click(apply_btn);
         return this;
     }

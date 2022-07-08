@@ -1,6 +1,6 @@
 package Testing;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,14 +36,24 @@ public class BaseClass {
         wait = new WebDriverWait(driver, 40);
         return driver;
     }
+    @BeforeTest
+    public static void create_screenShot_folder() throws IOException {
+        String filepath = System.getProperty("user.dir")+"\\Screenshots\\";
+        File file = new File(filepath);
+        FileUtils.deleteDirectory(file);
+        file.delete();
+
+        File f1 = new File(System.getProperty("user.dir")+"\\Screenshots\\");
+        //Creating a folder using mkdir() method
+        boolean bool = f1.mkdir();
+    }
     public void do_click(By element) throws InterruptedException {
-        System.out.println(element);
+
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         driver.findElement(element).click();
         Thread.sleep(1000);
     }
     public void js_click(By element) throws InterruptedException {
-        System.out.println(element);
 
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
 
@@ -73,12 +84,13 @@ public class BaseClass {
         }
     }
     public void go_to_allocation_engine() throws InterruptedException {
+        Thread.sleep(4000);
         driver.get("https://dna-staging.hashedin.com/allocation/allocate");
     }
     public void go_to_pods_platform() throws InterruptedException {
         driver.get("https://dna-staging.hashedin.com/pods/requests/PR-87");
     }
-    // @AfterMethod
+    @AfterMethod
     public void closeBrowser() {  // close browser
         driver.close();
     }

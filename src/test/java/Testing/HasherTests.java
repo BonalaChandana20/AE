@@ -18,6 +18,15 @@ public class HasherTests extends BaseClass {
     }
 
     @Test
+    public void TC02_VerifyDashboard () throws InterruptedException {
+        login.login_to_website();
+        login.go_to_allocation_engine();
+        Hasher.click_MyNominationsTab().
+                verify_dashboard();
+
+    }
+
+    @Test
     public void TC03_VerifyStatusAfterNomination () throws InterruptedException {
         //PO.pod_id = "POD-557";
         login.login_to_website();
@@ -37,16 +46,6 @@ public class HasherTests extends BaseClass {
                 Verify_StatusAfterNominating();
 
     }
-
-    @Test
-    public void TC02_VerifyDashboard () throws InterruptedException {
-        login.login_to_website();
-        login.go_to_allocation_engine();
-        Hasher.click_MyNominationsTab().
-                verify_dashboard();
-
-    }
-
 
     //Pooja tests
     @Test

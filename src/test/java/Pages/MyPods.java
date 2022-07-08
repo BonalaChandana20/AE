@@ -25,6 +25,8 @@ public class MyPods extends BaseClass {
     By close= By.xpath("//button[@aria-label=\"Close\"]");
     By closed_status = By.xpath("//span[text()=\"CLOSED\"]");
     By closed_tab= By.xpath("//div[contains(text(),\"Closed Pods\")]");
+    By AllocationTab = By.xpath("//span[contains(text(),'Allocations')]");
+    By MyNominationsTab = By.xpath("//span[contains(text(),'My Nominations')]");
 
     //Chandana X-paths
     By consideredStatus = By.xpath("//span[contains(text(),'Considered')]");
@@ -42,8 +44,6 @@ public class MyPods extends BaseClass {
     public int count=0;
 
     // common action methods
-
-
     public MyPods nominate_second_hasher() throws InterruptedException {
         do_click(nomination_with_count_2);
         return this;
@@ -55,10 +55,21 @@ public class MyPods extends BaseClass {
         act.moveToElement(driver.findElement(MyPodsTab)).click().perform();
         return this;
     }
-//    public MyPods click_MyPods() throws InterruptedException {
-//        do_click(MyPodsTab);
-//        return this;
-//    }
+    public MyPods click_allocationsTab() throws InterruptedException {
+
+        do_click(AllocationTab);
+        return  this;
+    }
+    public MyPods click_MyNominationsTab() throws InterruptedException {
+        do_click(MyNominationsTab);
+        return  this;
+    }
+    public MyPods get_title(){
+        String title = driver.getTitle();
+        System.out.println("Title of the Page is:"+""+title);
+        Assert.assertEquals(title,"Allocation Engine");
+        return this;
+    }
     public MyPods click_pod(String pod) throws InterruptedException {
         new WebDriverWait(driver, 5).
                 until(webDriver -> ((JavascriptExecutor) webDriver).

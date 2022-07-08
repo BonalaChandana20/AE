@@ -10,6 +10,33 @@ public class ProductOwnerTests extends BaseClass{
     MyPods ProductOwner = new MyPods();
     PodsPlatform PO = new PodsPlatform();
 
+    @Test
+    public void TC01_check_po_able_to_create_newpod() throws InterruptedException {
+        login.login_to_website();
+        PO.create_newpod();
+        // validation
+        PO.validate_move_to_allocation();
+    }
+    @Test
+    public void TC03_test_PO_login() throws InterruptedException{
+        login.login_to_website();
+        login.go_to_allocation_engine();
+    }
+    @Test
+    public void TC04_verifyDashboard() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+        ProductOwner.get_title();
+    }
+    @Test
+    public void TC05_verify_togglingTabMethod() throws InterruptedException {
+        login.go_to_allocation_engine();
+        login.login_to_website();
+        ProductOwner
+                .click_MyNominationsTab()
+                .click_allocationsTab();
+
+    }
     // chandana Tests
     @Test
     public void TC09_VerifyStatusOfPod() throws InterruptedException{
@@ -87,18 +114,6 @@ public class ProductOwnerTests extends BaseClass{
     }
 
     // saurabh tests
-    @Test
-    public void TC01_check_po_able_to_create_newpod() throws InterruptedException {
-        login.login_to_website();
-
-        // create a new pod
-        PO.create_newpod();
-
-        // validation
-        PO.validate_move_to_allocation();
-
-        System.out.println("pod id = "+PO.pod_id);
-    }
     @Test
     public void TC15_check_nomination_count_update() throws InterruptedException{
 
