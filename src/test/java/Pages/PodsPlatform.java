@@ -41,6 +41,8 @@ public class PodsPlatform extends BaseClass {
     By confirm_btn = By.xpath("//span[text()=\"Confirm\" ]");
     By all_pods = By.xpath("(//div[@class=\"ant-space-item\"]//a)");
     By move_to_allocation_btn = By.xpath("//span[text()=\"Move to Allocation\"]");
+    By pod_Size =  By.xpath("(//span[@aria-label='up'])[1]");
+    By Count = By.xpath("(//span[@aria-label='up'])[2]");
 //    By = By.xpath("");
 
     public void create_newpod() throws InterruptedException {
@@ -78,6 +80,53 @@ public class PodsPlatform extends BaseClass {
             click_move_to_allocation();
             click_confirm_btn();
         }
+    public void create_newpod1() throws InterruptedException {
+        Thread.sleep(7000);
+
+        click_test_btn();
+        click_edit_btn();
+        set_delivery_leader();
+        set_product_manager();
+        click_update_btn();
+        wait_for_message();
+        go_back();
+        click_new_config();
+        set_config_name();
+        set_Pod_Size();
+        click_config_start_date();
+        set_todays_date();
+        set_capability("SDET");
+        set_track("SDET");
+        Set_Count();
+        set_skill("Java");
+        click_save_config();
+        wait_for_message();
+        click_new_pod();
+        set_pod_name();
+        click_onboard_date();
+        set_onboard_start_date();
+        click_billing_date();
+        set_billing_start_date();
+        set_SKU1();
+        click_confirm_pod_btn();
+        select_config();
+        click_continue_btn();
+        click_confirm_btn();
+        wait_for_message();
+        click_latest_created_pod();
+        click_move_to_allocation();
+        click_confirm_btn();
+    }
+    public PodsPlatform set_Pod_Size() throws InterruptedException {
+        do_click(pod_Size);
+
+        return this;
+    }
+    public PodsPlatform Set_Count() throws InterruptedException {
+        do_click(Count);
+        return this;
+
+    }
 
     public PodsPlatform click_test_btn() throws InterruptedException {
         //Thread.sleep(10000);
@@ -223,6 +272,17 @@ public class PodsPlatform extends BaseClass {
         Thread.sleep(2000);
         yourOption.sendKeys(Keys.DOWN);
         yourOption.sendKeys(Keys.DOWN);
+        yourOption.sendKeys(Keys.RETURN);
+        return  this;
+    }
+    public PodsPlatform set_SKU1() throws InterruptedException {
+        wait.until(ExpectedConditions.presenceOfElementLocated(pod_SKU));
+
+        WebElement yourOption = driver.findElement(pod_SKU);
+        yourOption.sendKeys("2");
+        Thread.sleep(2000);
+        yourOption.sendKeys(Keys.DOWN);
+        //yourOption.sendKeys(Keys.DOWN);
         yourOption.sendKeys(Keys.RETURN);
         return  this;
     }

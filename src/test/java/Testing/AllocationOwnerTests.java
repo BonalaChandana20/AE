@@ -52,9 +52,10 @@ public class AllocationOwnerTests extends BaseClass {
     @Test
     public void TC16_nominationPageMethods() throws InterruptedException {
         login.login_to_website();
-        PO.create_newpod();
+        PO.create_newpod1();
         login.go_to_allocation_engine();
-        AllocationOwner
+        //-----Adding Same Hasher in different Roles in the same Pod POD-649
+      AllocationOwner
                 .click_pod(PO.pod_id)
                 .click_nominate_btn()
                 .click_filter()
@@ -72,18 +73,31 @@ public class AllocationOwnerTests extends BaseClass {
                 .search_hasher(prop.getProperty("Hasher"))
                 .click_add_hasher()
                 .click_ConfirmNomination();
-
+         ProductOwner
+                .click_MyPods()
+                .click_confirm_pod()
+                .click_pod(PO.pod_id)
+                .wait_for_consideration()
+                .click_nominations()
+                .click_choose_confidence()
+                .provide_ConfidenceLevel()
+                .select_hasher()
+                .close_feedback()
+                .nominate_second_hasher()
+                .click_choose_confidence()
+                .provide_ConfidenceLevel()
+                .select_hasher()
+                .close_feedback();
         AllocationOwner
                 .click_allocationsTab()
                 .click_pod(PO.pod_id)
                 .click_allocation_tab()
                 .click_nominate_btn()
                 .select_hasher()
-                .click_close().Nominate_Second_Hasher()
+                .click_close()
+                .Nominate_Second_Hasher()
                 .select_hasher();
         ProductOwner.wait_for_message();
-
-
 
 
     }
@@ -94,7 +108,7 @@ public class AllocationOwnerTests extends BaseClass {
         PO.create_newpod();
         login.go_to_allocation_engine();
         AllocationOwner
-                .click_pod(PO.pod_id)
+                .click_pod("POD-647")
                 .click_nominate_btn()
                 .click_filter()
                 .reset_filter()
@@ -105,7 +119,7 @@ public class AllocationOwnerTests extends BaseClass {
         ProductOwner
                 .click_MyPods()
                 .click_confirm_pod()
-                .click_pod(PO.pod_id)
+                .click_pod("POD-647")
                 .wait_for_consideration()
                 .click_nominations()
                 .click_choose_confidence()
@@ -114,7 +128,7 @@ public class AllocationOwnerTests extends BaseClass {
                 .close_feedback();
         AllocationOwner
                 .click_allocationsTab()
-                .click_pod(PO.pod_id)
+                .click_pod("POD-647")
                 .click_allocation_tab()
                 .click_nominate_btn()
                 .select_hasher()
@@ -127,7 +141,7 @@ public class AllocationOwnerTests extends BaseClass {
     @Test(priority = 6)
     public void TC18_confirmStatusMethods() throws InterruptedException {
         login.login_to_website();
-        //PO.create_newpod();
+        PO.create_newpod();
         login.go_to_allocation_engine();
         AllocationOwner
                 .click_pod(PO.pod_id)
